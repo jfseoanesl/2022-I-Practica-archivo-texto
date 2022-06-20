@@ -14,9 +14,9 @@ import java.util.List;
  */
 public interface IComputadorDao {
     
-    void registrar(Computador c) throws ExcepcionEscritura;
-    List<Computador> leer() throws ExcepcionLectura;
-    Computador buscar(Computador c) throws ExcepcionLectura;
-    Computador eliminar(Computador c)throws ExcepcionLectura;    
+    void registrar(Computador c) throws ExcepcionArchivo;
+    List<Computador> leer() throws ExcepcionArchivo;
+    Computador buscar(Computador c) throws ExcepcionArchivo;
+    Computador eliminar(Computador c)throws ExcepcionArchivo;    
     
 }

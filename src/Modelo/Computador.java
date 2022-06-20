@@ -4,11 +4,13 @@
  */
 package Modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Jairo F
  */
-public class Computador {
+public class Computador implements Serializable {
     
     private int nSerie;
     private String marca;

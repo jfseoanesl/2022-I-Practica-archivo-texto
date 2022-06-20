@@ -6,6 +6,7 @@ package vista;
 
 import Excepciones.*;
 import Modelo.Computador;
+import Modelo.ListaComputador;
 import Persistencia.*;
 import java.util.List;
 
@@ -21,14 +22,14 @@ public class Principal {
         Computador pc2 = new Computador(345, "Asus", 4000);
         Computador pc3 = new Computador(567, "Lenovo", 6000);
 
-        IComputadorDao archivo = new ImpArchivoTexto();
+        ListaComputador catalogo = new ListaComputador();
 
         try {
-            archivo.registrar(pc1);
-            archivo.registrar(pc2);
-            archivo.registrar(pc3);
+            catalogo.registrar(pc1);
+            catalogo.registrar(pc2);
+            catalogo.registrar(pc3);
             System.out.println("Caso 1: Registro de datos en archivo");
-        } catch (ExcepcionEscritura e) {
+        } catch (ExcepcionArchivo e) {
             System.out.println("Excepcion: " + e.getMessage());
         }
         
@@ -36,11 +37,11 @@ public class Principal {
         
         System.out.println("Caso 2: Lectura de archivo\n");
         try {
-            List<Computador> lista = archivo.leer();
+            List<Computador> lista = catalogo.leer();
             for (Computador c : lista) {
                 System.out.println(c);
             }
-        } catch (ExcepcionLectura e) {
+        } catch (ExcepcionArchivo e) {
             System.out.println("Excepcion: " + e.getMessage());
         }
         
@@ -48,7 +49,7 @@ public class Principal {
         
         System.out.println("Caso 3: Busqueda por serial 123\n");
         try {
-            Computador busqueda = archivo.buscar(new Computador(123));
+            Computador busqueda = catalogo.buscar(new Computador(123));
             if(busqueda!=null){
                 System.out.println("Resultado: Encontrado");
                 System.out.println(busqueda);
@@ -56,7 +57,7 @@ public class Principal {
             else{
                 System.out.println("Resultado: No encontrado");
             }
-        } catch (ExcepcionLectura e) {
+        } catch (ExcepcionArchivo e) {
             System.out.println("Excepcion: " + e.getMessage());
         }
         
@@ -64,7 +65,7 @@ public class Principal {
         
         System.out.println("Caso 4: Eliminacion por serial 123\n");
         try {
-            Computador eliminado = archivo.eliminar(new Computador(123));
+            Computador eliminado = catalogo.eliminar(new Computador(123));
             if(eliminado!=null){
                 System.out.println("Resultado: Eliminado");
                 System.out.println(eliminado);
@@ -72,7 +73,7 @@ public class Principal {
             else{
                 System.out.println("Resultado: No encontrado");
             }
-        } catch (ExcepcionLectura e) {
+        } catch (ExcepcionArchivo e) {
             System.out.println("Excepcion: " + e.getMessage());
         }
         
@@ -80,11 +81,11 @@ public class Principal {
         
         System.out.println("Caso 2: Lectura de archivo\n");
         try {
-            List<Computador> lista = archivo.leer();
+            List<Computador> lista = catalogo.leer();
             for (Computador c : lista) {
                 System.out.println(c);
             }
-        } catch (ExcepcionLectura e) {
+        } catch (ExcepcionArchivo e) {
             System.out.println("Excepcion: " + e.getMessage());
         }
     }

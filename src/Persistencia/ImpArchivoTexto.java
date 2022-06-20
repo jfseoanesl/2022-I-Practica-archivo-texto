@@ -72,7 +72,7 @@ public class ImpArchivoTexto implements IComputadorDao {
     }
 
     @Override
-    public void registrar(Computador c) throws ExcepcionEscritura {
+    public void registrar(Computador c) throws ExcepcionArchivo {
         PrintWriter pw = null;
         try {
             this.modoEscritura = new FileWriter(archivo, true);
@@ -80,7 +80,7 @@ public class ImpArchivoTexto implements IComputadorDao {
             pw.println(c.getDataFileFormat());
 
         } catch (IOException ioe) {
-            throw new ExcepcionEscritura("El archivo en modo escritura no existe o no pude ser creado");
+            throw new ExcepcionArchivo("El archivo en modo escritura no existe o no pude ser creado");
          
         } finally {
             if (pw != null) {
@@ -97,7 +97,7 @@ public class ImpArchivoTexto implements IComputadorDao {
     }
 
     @Override
-    public List<Computador> leer() throws ExcepcionLectura {
+    public List<Computador> leer() throws ExcepcionArchivo {
         List<Computador> lista;
         try {
             this.modoLectura = new Scanner(this.archivo);
@@ -110,7 +110,7 @@ public class ImpArchivoTexto implements IComputadorDao {
             return lista;
             
         } catch (FileNotFoundException ioe) {
-            throw new ExcepcionLectura("Error al abrir archivo en modo lectura, no existe");
+            throw new ExcepcionArchivo("Error al abrir archivo en modo lectura, no existe");
         }
         finally{
             if(this.modoLectura!=null)
@@ -120,7 +120,7 @@ public class ImpArchivoTexto implements IComputadorDao {
     }
 
     @Override
-    public Computador buscar(Computador c) throws ExcepcionLectura {
+    public Computador buscar(Computador c) throws ExcepcionArchivo {
         Computador buscado=null;
         try {
             this.modoLectura = new Scanner(this.archivo);
@@ -135,7 +135,7 @@ public class ImpArchivoTexto implements IComputadorDao {
             return buscado;
             
         } catch (FileNotFoundException ioe) {
-            throw new ExcepcionLectura("Error al abrir archivo en modo lectura, no existe");
+            throw new ExcepcionArchivo("Error al abrir archivo en modo lectura, no existe");
         }
         finally{
             if(this.modoLectura!=null)
@@ -158,7 +158,7 @@ public class ImpArchivoTexto implements IComputadorDao {
     }
 
     @Override
-    public Computador eliminar(Computador c) throws ExcepcionLectura {
+    public Computador eliminar(Computador c) throws ExcepcionArchivo {
         Computador eliminado=null;
         ImpArchivoTexto archivoTmp = new ImpArchivoTexto("Registro.tmp");
         try {
@@ -178,13 +178,10 @@ public class ImpArchivoTexto implements IComputadorDao {
             return eliminado;
             
         } catch (FileNotFoundException ioe) {
-            throw new ExcepcionLectura("Error al abrir archivo en modo lectura, no existe");
-        }
-        catch(ExcepcionEscritura e){
-             throw new ExcepcionLectura("El archivo tmp en modo escritura no existe o no pude ser creado");
+            throw new ExcepcionArchivo("Error al abrir archivo en modo lectura, no existe");
         }
         catch(IOException e){
-            throw new ExcepcionLectura(e.getMessage());
+            throw new ExcepcionArchivo(e.getMessage());
         }
         finally{
             if(this.modoLectura!=null)
