@@ -17,7 +17,12 @@ import java.util.List;
 public class Principal {
 
     public static void main(String[] args) {
-
+       
+        // new GuiRegistro(null, false);
+        new GuiInicio();
+        //new GuiPrincipal(null, false);
+        //new GuiConsulta(null, false);
+        /*
         Computador pc1 = new Computador(123, "HP", 2000);
         Computador pc2 = new Computador(345, "Asus", 4000);
         Computador pc3 = new Computador(567, "Lenovo", 6000);
@@ -87,6 +92,6 @@ public class Principal {
             }
         } catch (ExcepcionArchivo e) {
             System.out.println("Excepcion: " + e.getMessage());
-        }
+        }*/
     }
 }
