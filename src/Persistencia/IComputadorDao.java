@@ -17,6 +17,7 @@ public interface IComputadorDao {
     void registrar(Computador c) throws ExcepcionArchivo;
     List<Computador> leer() throws ExcepcionArchivo;
     Computador buscar(Computador c) throws ExcepcionArchivo;
-    Computador eliminar(Computador c)throws ExcepcionArchivo;    
+    Computador eliminar(Computador c)throws ExcepcionArchivo;   
+    Computador eliminar_lote(Computador c)throws ExcepcionArchivo;   
     
 }

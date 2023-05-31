@@ -161,4 +161,9 @@ public class ImpArchivoObjeto implements IComputadorDao {
         this.modoEscritura = modoEscritura;
     }
 
+    @Override
+    public Computador eliminar_lote(Computador c) throws ExcepcionArchivo {
+        return null;
+    }
+
 }

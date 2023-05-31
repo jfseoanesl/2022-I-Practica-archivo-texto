@@ -7,7 +7,6 @@ package vista;
 import Excepciones.*;
 import Modelo.Computador;
 import Modelo.ListaComputador;
-import Persistencia.*;
 import java.util.List;
 
 /**
@@ -18,17 +17,16 @@ public class Principal {
 
     public static void main(String[] args) {
        
-        // new GuiRegistro(null, false);
-        new GuiInicio();
-        //new GuiPrincipal(null, false);
-        //new GuiConsulta(null, false);
-        /*
+        
+        // creacion de objetos 
         Computador pc1 = new Computador(123, "HP", 2000);
         Computador pc2 = new Computador(345, "Asus", 4000);
         Computador pc3 = new Computador(567, "Lenovo", 6000);
 
+        // Intancia de objeto de logica de aplicacion
         ListaComputador catalogo = new ListaComputador();
 
+        // 1. escritura en archivo
         try {
             catalogo.registrar(pc1);
             catalogo.registrar(pc2);
@@ -38,6 +36,7 @@ public class Principal {
             System.out.println("Excepcion: " + e.getMessage());
         }
         
+        // 2. Lectura de archivo
         System.out.println("-------------------------------------");
         
         System.out.println("Caso 2: Lectura de archivo\n");
@@ -50,8 +49,8 @@ public class Principal {
             System.out.println("Excepcion: " + e.getMessage());
         }
         
+        // 3. Busqueda de registro por criterio
         System.out.println("-------------------------------------");
-        
         System.out.println("Caso 3: Busqueda por serial 123\n");
         try {
             Computador busqueda = catalogo.buscar(new Computador(123));
@@ -66,11 +65,12 @@ public class Principal {
             System.out.println("Excepcion: " + e.getMessage());
         }
         
+        //4. Eliminacion de registro por criterio
         System.out.println("-------------------------------------");
         
         System.out.println("Caso 4: Eliminacion por serial 123\n");
         try {
-            Computador eliminado = catalogo.eliminar(new Computador(123));
+            Computador eliminado = catalogo.eliminar_lote(new Computador(123));
             if(eliminado!=null){
                 System.out.println("Resultado: Eliminado");
                 System.out.println(eliminado);
@@ -82,6 +82,7 @@ public class Principal {
             System.out.println("Excepcion: " + e.getMessage());
         }
         
+        //5. Lectura de archivo post - eliminacion
         System.out.println("-------------------------------------");
         
         System.out.println("Caso 2: Lectura de archivo\n");
@@ -92,6 +93,6 @@ public class Principal {
             }
         } catch (ExcepcionArchivo e) {
             System.out.println("Excepcion: " + e.getMessage());
-        }*/
+        }
     }
 }

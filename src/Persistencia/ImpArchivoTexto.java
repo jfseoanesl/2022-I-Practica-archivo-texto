@@ -188,5 +188,42 @@ public class ImpArchivoTexto implements IComputadorDao {
                 this.modoLectura.close();
         }
     }
+    
+
+    public Computador eliminar_lote(Computador c) throws ExcepcionArchivo {
+        Computador eliminado=null;
+        List<Computador> noEliminados = new ArrayList();
+        try {
+            this.modoLectura = new Scanner(this.archivo);
+            while(this.modoLectura.hasNext()){
+                String datos[] = this.modoLectura.nextLine().split(";");
+                Computador aux = this.cargarDatos(datos);
+                if(aux.getnSerie()!=c.getnSerie()){
+                   noEliminados.add(c);
+                }
+                else{
+                    eliminado = aux;
+                }
+            }
+            this.modoLectura.close();
+            
+            this.modoEscritura = new FileWriter(this.archivo,false);
+            PrintWriter pw = new PrintWriter(this.modoEscritura);
+            for(Computador pc: noEliminados){
+                pw.println(pc.getDataFileFormat());
+            }
+            pw.close();
+            this.modoEscritura.close();
+//            this.renombrarArchivo(archivoTmp.archivo);
+            return eliminado;
+            
+        } catch (FileNotFoundException ioe) {
+            throw new ExcepcionArchivo("Error al abrir archivo en modo lectura, no existe");
+        }
+        catch(IOException e){
+            throw new ExcepcionArchivo(e.getMessage());
+        }
+        
+    }
 
 }

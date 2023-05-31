@@ -18,8 +18,8 @@ public class ListaComputador  implements IComputadorDao {
     private IComputadorDao datos;
 
     public ListaComputador() {
-        //this.datos = new ImpArchivoTexto();
-        this.datos = new ImpArchivoObjeto();
+        this.datos = new ImpArchivoTexto();
+//        this.datos = new ImpArchivoObjeto();
     }
 
     
@@ -41,6 +41,10 @@ public class ListaComputador  implements IComputadorDao {
 
     @Override
     public Computador eliminar(Computador c) throws ExcepcionArchivo {
+        return this.datos.eliminar(c);
+    }
+    
+    public Computador eliminar_lote(Computador c) throws ExcepcionArchivo {
         return this.datos.eliminar(c);
     }
     
